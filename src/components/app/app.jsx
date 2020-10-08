@@ -6,15 +6,6 @@ import LoginScreen from "../login-screen/login-screen";
 import FavoritesScreen from "../favorites-screen/favorites-screen";
 import OfferScreen from "../offer-screen/offer-screen";
 
-// const App = (props) => {
-//   const {placesAvailable} = props;
-
-//   return (
-//     <MainScreen placesAvailable = {placesAvailable} />
-//   );
-// };
-
-
 const App = (props) => {
   const {placesAvailable} = props;
 
