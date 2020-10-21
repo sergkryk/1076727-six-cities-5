@@ -148,33 +148,33 @@ const getRandomArrayItem = (array) => {
 
 const generateOffer = () => {
   return {
-    isFavorite: getRandomBoolean(),
-    city: getRandomArrayItem(cities),
-    type: getRandomArrayItem(types),
-    title: getRandomArrayItem(titles),
-    price: Math.floor(Math.random() * MAX_PRICE),
-    premium: getRandomBoolean(),
-    rating: Math.floor((Math.random() * 50)) / 10,
     bedrooms: Math.floor(Math.random() * MAX__BEDROOMS),
-    guests: Math.floor(Math.random() * MAX_GUESTS),
+    city: getRandomArrayItem(cities),
+    description: getRandomArray(descriptions).slice(0, MAX_DESCRIPTIONS),
     features: getRandomArray(features),
+    guests: Math.floor(Math.random() * MAX_GUESTS),
     host: {
+      avatar: getRandomAvatar(),
       name: getRandomArrayItem(hostNames),
       pro: getRandomBoolean(),
-      avatar: getRandomAvatar(),
     },
-    description: getRandomArray(descriptions).slice(0, MAX_DESCRIPTIONS),
+    isFavorite: getRandomBoolean(),
     pictures: getImgUrl(MAX_IMAGES),
+    premium: getRandomBoolean(),
+    price: Math.floor(Math.random() * MAX_PRICE),
+    rating: Math.floor((Math.random() * 50)) / 10,
+    title: getRandomArrayItem(titles),
+    type: getRandomArrayItem(types),
   };
 };
 
 const generateReview = () => {
   return {
-    name: getRandomArrayItem(hostNames),
     avatar: getRandomAvatar(),
-    rating: Math.floor((Math.random() * 50)) / 10,
     date: getRandomDate(),
-    review: getRandomArrayItem(reviews),
+    name: getRandomArrayItem(hostNames),
+    rating: Math.floor((Math.random() * 50)) / 10,
+    content: getRandomArrayItem(reviews),
   };
 };
 

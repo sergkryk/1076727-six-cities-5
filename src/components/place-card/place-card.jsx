@@ -4,10 +4,12 @@ import {propTypeOffer} from "../../check-prop-types";
 
 
 const PlaceCard = (props) => {
-  const {offer: {pictures, title, price, type, rating, id}} = props;
-  const {cardHoverHandler} = props;
-  const {history} = props;
-  const {options: {articleClassName, wrapperClassName, infoClassName, image: {imgWidth, imgHeight}}} = props;
+  const {
+    cardHoverHandler,
+    history,
+    offer: {pictures, title, price, type, rating, id},
+    options: {articleClassName, wrapperClassName, infoClassName, image: {imgWidth, imgHeight}},
+  } = props;
 
   const cardClickHandler = (evt) => {
     evt.preventDefault();
@@ -50,18 +52,18 @@ const PlaceCard = (props) => {
 };
 
 PlaceCard.propTypes = {
+  cardHoverHandler: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  offer: PropTypes.shape(propTypeOffer).isRequired,
   options: PropTypes.shape({
     articleClassName: PropTypes.string.isRequired,
-    infoClassName: PropTypes.string.isRequired,
-    wrapperClassName: PropTypes.string.isRequired,
     image: PropTypes.shape({
       imgWidth: PropTypes.number.isRequired,
       imgHeight: PropTypes.number.isRequired,
-    })
+    }),
+    infoClassName: PropTypes.string.isRequired,
+    wrapperClassName: PropTypes.string.isRequired,
   }),
-  history: PropTypes.object.isRequired,
-  cardHoverHandler: PropTypes.func.isRequired,
-  offer: PropTypes.shape(propTypeOffer).isRequired,
 };
 
 export default PlaceCard;

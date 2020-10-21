@@ -19,9 +19,7 @@ class OffersList extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
-    const {history} = this.props;
-    const {options} = this.props;
+    const {history, offers, options} = this.props;
 
     return (
       offers.map((offer) => (
@@ -38,17 +36,17 @@ class OffersList extends PureComponent {
 }
 
 OffersList.propTypes = {
-  options: PropTypes.shape({
-    articleClassName: PropTypes.string.isRequired,
-    infoClassName: PropTypes.string.isRequired,
-    wrapperClassName: PropTypes.string.isRequired,
-    image: PropTypes.shape({
-      imgWidth: PropTypes.number.isRequired,
-      imgHeight: PropTypes.number.isRequired,
-    })
-  }),
   history: PropTypes.object.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
+  options: PropTypes.shape({
+    articleClassName: PropTypes.string.isRequired,
+    image: PropTypes.shape({
+      imgHeight: PropTypes.number.isRequired,
+      imgWidth: PropTypes.number.isRequired,
+    }),
+    infoClassName: PropTypes.string.isRequired,
+    wrapperClassName: PropTypes.string.isRequired,
+  }),
 };
 
 export default OffersList;

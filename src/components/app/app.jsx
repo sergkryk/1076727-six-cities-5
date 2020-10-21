@@ -8,9 +8,7 @@ import PlaceCardDetailed from "../place-card-detailed/place-card-detailed";
 import {propTypeOffer, propTypeReview} from "../../check-prop-types";
 
 const App = (props) => {
-  const {placesAvailable} = props;
-  const {offers} = props;
-  const {reviews} = props;
+  const {offers, placesAvailable, reviews} = props;
 
   return (
     <BrowserRouter>
@@ -53,8 +51,8 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  placesAvailable: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
+  placesAvailable: PropTypes.number.isRequired,
   reviews: PropTypes.arrayOf(PropTypes.shape(propTypeReview).isRequired),
 };
 

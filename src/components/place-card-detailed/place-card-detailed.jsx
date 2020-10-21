@@ -6,13 +6,11 @@ import {propTypeOffer, propTypeReview} from "../../check-prop-types";
 
 
 const PlaceCardDetailed = (props) => {
-  const {offers} = props;
-  const {reviews} = props;
-  const {id} = props;
-  const {history} = props;
+  const {offers, reviews, id, history} = props;
 
-  const el = offers.filter((offer) => offer.id === parseInt(id, 10))[0];
-  const favOffers = offers.filter((offer) => offer !== el).filter((item) => item.city === el.city).slice(0, 3);
+  const currentOffer = offers.filter((offer) => offer.id === parseInt(id, 10))[0];
+  const currentReviews = reviews.filter((review) => review.id === currentOffer.id);
+  const favOffers = offers.filter((offer) => offer !== currentOffer && offer.city === currentOffer.city).slice(0, 3);
   const options = {
     articleClassName: `near-places__card`,
     wrapperClassName: `near-places__image-wrapper`,
@@ -21,6 +19,10 @@ const PlaceCardDetailed = (props) => {
       imgWidth: 260,
       imgHeight: 200,
     }
+  };
+
+  const getReviewDate = (date) => {
+    return `${date.toLocaleString(`en`, {month: `long`})} ${date.getFullYear()}`;
   };
 
   return (
@@ -50,11 +52,11 @@ const PlaceCardDetailed = (props) => {
 
       <main className="page__main page__main--property">
         {
-          <section key={el.title} className="property">
+          <section key={currentOffer.title} className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                {el.pictures.map((picture, i) => (
-                  <div className="property__image-wrapper" key={i * Math.random()}>
+                {currentOffer.pictures.map((picture) => (
+                  <div className="property__image-wrapper" key={picture}>
                     <img className="property__image" src={picture} alt="Photo studio"/>
                   </div>
                 ))}
@@ -63,7 +65,7 @@ const PlaceCardDetailed = (props) => {
             <div className="property__container container">
               <div className="property__wrapper">
                 {
-                  el.premium ?
+                  currentOffer.premium ?
                     <div className="property__mark">
                       <span>Premium</span>
                     </div>
@@ -71,7 +73,7 @@ const PlaceCardDetailed = (props) => {
                 }
                 <div className="property__name-wrapper">
                   <h1 className="property__name">
-                    {el.title}
+                    {currentOffer.title}
                   </h1>
                   <button className="property__bookmark-button button" type="button">
                     <svg className="property__bookmark-icon" width="31" height="33">
@@ -82,30 +84,30 @@ const PlaceCardDetailed = (props) => {
                 </div>
                 <div className="property__rating rating">
                   <div className="property__stars rating__stars">
-                    <span style={{width: `${el.rating * 20}%`}}></span>
+                    <span style={{width: `${currentOffer.rating * 20}%`}}></span>
                     <span className="visually-hidden">Rating</span>
                   </div>
-                  <span className="property__rating-value rating__value">{el.rating}</span>
+                  <span className="property__rating-value rating__value">{currentOffer.rating}</span>
                 </div>
                 <ul className="property__features">
                   <li className="property__feature property__feature--entire">
-                    {el.type}
+                    {currentOffer.type}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    {el.bedrooms} Bedrooms
+                    {currentOffer.bedrooms} Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max {el.guests} adults
+                    Max {currentOffer.guests} adults
                   </li>
                 </ul>
                 <div className="property__price">
-                  <b className="property__price-value">&euro;{el.price}</b>
+                  <b className="property__price-value">&euro;{currentOffer.price}</b>
                   <span className="property__price-text">&nbsp;night</span>
                 </div>
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    {el.features.map((feature) => (
+                    {currentOffer.features.map((feature) => (
                       <li className="property__inside-item" key={feature}>
                         {feature}
                       </li>
@@ -116,13 +118,13 @@ const PlaceCardDetailed = (props) => {
                   <h2 className="property__host-title">Meet the host</h2>
                   <div className="property__host-user user">
                     <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                      <img className="property__avatar user__avatar" src={el.host.avatar} width="74" height="74" alt="Host avatar"/>
+                      <img className="property__avatar user__avatar" src={currentOffer.host.avatar} width="74" height="74" alt="Host avatar"/>
                     </div>
                     <span className="property__user-name">
-                      {el.host.name}
+                      {currentOffer.host.name}
                     </span>
                     {
-                      el.host.pro ?
+                      currentOffer.host.pro ?
                         <span className="property__user-status">
                           Pro
                         </span> :
@@ -130,7 +132,7 @@ const PlaceCardDetailed = (props) => {
                     }
                   </div>
                   <div className="property__description">
-                    {el.description.map((item) => (
+                    {currentOffer.description.map((item) => (
                       <p className="property__text" key={item}>
                         {item}
                       </p>
@@ -138,32 +140,34 @@ const PlaceCardDetailed = (props) => {
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.filter((review) => review.id === el.id).length}</span></h2>
+                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{currentReviews.length}</span></h2>
                   <ul className="reviews__list">
-                    {reviews.filter((review) => review.id === el.id).map((review) => (
-                      <li className="reviews__item" key={review.avatar}>
-                        <div className="reviews__user user">
-                          <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                            <img className="reviews__avatar user__avatar" src={review.avatar} width="54" height="54" alt="Reviews avatar"/>
-                          </div>
-                          <span className="reviews__user-name">
-                            {review.name}
-                          </span>
-                        </div>
-                        <div className="reviews__info">
-                          <div className="reviews__rating rating">
-                            <div className="reviews__stars rating__stars">
-                              <span style={{width: `${review.rating * 20}%`}}></span>
-                              <span className="visually-hidden">Rating</span>
+                    {currentReviews.map((review) =>
+                      (
+                        <li className="reviews__item" key={review.avatar}>
+                          <div className="reviews__user user">
+                            <div className="reviews__avatar-wrapper user__avatar-wrapper">
+                              <img className="reviews__avatar user__avatar" src={review.avatar} width="54" height="54" alt="Reviews avatar"/>
                             </div>
+                            <span className="reviews__user-name">
+                              {review.name}
+                            </span>
                           </div>
-                          <p className="reviews__text">
-                            {review.review}
-                          </p>
-                          <time className="reviews__time" dateTime={review.date}>{`${review.date.toLocaleString(`en`, {month: `long`})} ${review.date.getFullYear()}`}</time>
-                        </div>
-                      </li>
-                    ))}
+                          <div className="reviews__info">
+                            <div className="reviews__rating rating">
+                              <div className="reviews__stars rating__stars">
+                                <span style={{width: `${review.rating * 20}%`}}></span>
+                                <span className="visually-hidden">Rating</span>
+                              </div>
+                            </div>
+                            <p className="reviews__text">
+                              {review.content}
+                            </p>
+                            <time className="reviews__time" dateTime={review.date}>{getReviewDate(review.date)}</time>
+                          </div>
+                        </li>
+                      )
+                    )}
                   </ul>
                   {<ReviewForm />}
                 </section>

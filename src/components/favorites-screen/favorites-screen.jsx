@@ -4,8 +4,7 @@ import OffersList from "../offers-list/offers-list";
 import {propTypeOffer} from "../../check-prop-types";
 
 const FavoritesScreen = (props) => {
-  const {offers} = props;
-  const {history} = props;
+  const {history, offers} = props;
 
   const options = {
     articleClassName: `favorites__card`,
@@ -16,6 +15,9 @@ const FavoritesScreen = (props) => {
       imgHeight: 110,
     }
   };
+
+  const favorites = offers.filter((offer) => offer.isFavorite);
+  const cities = [...new Set(favorites.map((offer) => offer.city))];
 
   return (
     <div className="page">
@@ -47,27 +49,24 @@ const FavoritesScreen = (props) => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {offers.filter((offer) => offer.isFavorite)
-                      .map((offer) => offer.city)
-                      .filter((offer, index, currentArray) => currentArray.indexOf(offer) === index)
-                      .map((offer) => (
-                        <li key={offer} className="favorites__locations-items">
-                          <div className="favorites__locations locations locations--current">
-                            <div className="locations__item">
-                              <a className="locations__item-link" href="#">
-                                <span>{offer}</span>
-                              </a>
-                            </div>
-                          </div>
-                          <div className="favorites__places">
-                            {<OffersList
-                              offers={offers.filter((item) => item.city === offer)}
-                              history={history}
-                              options={options}
-                            />}
-                          </div>
-                        </li>
-                      ))};
+              {cities.map((city) => (
+                <li key={city} className="favorites__locations-items">
+                  <div className="favorites__locations locations locations--current">
+                    <div className="locations__item">
+                      <a className="locations__item-link" href="#">
+                        <span>{city}</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div className="favorites__places">
+                    {<OffersList
+                      offers={favorites.filter((item) => item.city === city)}
+                      history={history}
+                      options={options}
+                    />}
+                  </div>
+                </li>
+              ))}
             </ul>
           </section>
         </div>

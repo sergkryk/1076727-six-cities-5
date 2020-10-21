@@ -4,9 +4,7 @@ import OffersList from "../offers-list/offers-list";
 import {propTypeOffer} from "../../check-prop-types";
 
 const MainScreen = (props) => {
-  const {placesAvailable} = props;
-  const {offers} = props;
-  const {history} = props;
+  const {history, offers, placesAvailable} = props;
 
   const options = {
     articleClassName: `cities__place-card`,
@@ -106,9 +104,6 @@ const MainScreen = (props) => {
                   offers={offers}
                   history={history}
                   options={options}
-                  // articleClassName={`cities__place-card`}
-                  // wrapperClassName={`cities__image-wrapper`}
-                  // infoClassName={`cities__card-info`}
                 />
               </div>
             </section>
