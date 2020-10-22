@@ -6,15 +6,30 @@ const MAX_GUESTS = 30;
 const MAX_DESCRIPTIONS = 2;
 const MAX_IMAGES = 6;
 
-const offersCount = 20;
+const offersCount = 4;
 
 const cities = [
   `Amsterdam`,
-  `Cologne`,
-  `Paris`,
-  `Brussels`,
-  `Hamburg`,
-  `Dusseldorf`,
+  // `Cologne`,
+  // `Paris`,
+  // `Brussels`,
+  // `Hamburg`,
+  // `Dusseldorf`,
+];
+
+const coordinates = [
+  {latitude: 52.3909553943508,
+    longitude: 4.85309666406198
+  },
+  {latitude: 52.369553943508,
+    longitude: 4.85309666406198
+  },
+  {latitude: 52.3909553943508,
+    longitude: 4.929309666406198
+  },
+  {latitude: 52.3809553943508,
+    longitude: 4.939309666406198
+  }
 ];
 
 const titles = [
@@ -180,10 +195,13 @@ const generateReview = () => {
 
 const generateMockArray = (itemNumber, foo) => {
   const newArray = [];
-  for (let i = 0; i <= itemNumber; i++) {
+  for (let i = 0; i < itemNumber; i++) {
     let item = foo();
     item.id = i;
     newArray.push(item);
+    if (item.city) {
+      item.coordinates = coordinates[i];
+    }
   }
   return newArray;
 };
