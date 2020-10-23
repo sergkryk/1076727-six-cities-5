@@ -7,6 +7,8 @@ import {propTypeOffer} from "../../check-prop-types";
 class Map extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.map = null;
   }
 
   componentDidMount() {
@@ -19,29 +21,29 @@ class Map extends PureComponent {
       iconSize: [30, 30]
     });
 
-    const map = leaflet.map(`map`, {
+    this.map = leaflet.map(`map`, {
       center: city,
       zoom,
       zoomControl: false,
       marker: true
     });
 
-    map.setView(city, zoom);
+    this.map.setView(city, zoom);
     leaflet
     .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
       attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
     })
-    .addTo(map);
+    .addTo(this.map);
 
-    leaflet.marker(city, {icon}).addTo(map);
+    leaflet.marker(city, {icon}).addTo(this.map);
 
     offers.forEach((offer) => {
-      leaflet.marker(offer.coordinates, {icon}).addTo(map);
+      leaflet.marker(offer.coordinates, {icon}).addTo(this.map);
     });
   }
 
   componentWillUnmount() {
-
+    this.map.remove();
   }
 
   render() {
