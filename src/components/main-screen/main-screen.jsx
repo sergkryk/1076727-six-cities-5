@@ -7,16 +7,6 @@ import {propTypeOffer} from "../../check-prop-types";
 const MainScreen = (props) => {
   const {history, offers, placesAvailable} = props;
 
-  const options = {
-    articleClassName: `cities__place-card`,
-    wrapperClassName: `cities__image-wrapper`,
-    infoClassName: `cities__card-info`,
-    image: {
-      imgWidth: 260,
-      imgHeight: 200,
-    }
-  };
-
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -104,7 +94,6 @@ const MainScreen = (props) => {
                 <OffersList
                   offers={offers}
                   history={history}
-                  options={options}
                 />
               </div>
             </section>

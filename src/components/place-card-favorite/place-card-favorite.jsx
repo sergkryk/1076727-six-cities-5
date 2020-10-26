@@ -8,7 +8,11 @@ const PlaceCardNear = (props) => {
   delete restProps.className;
 
   return (
-    <PlaceCard className={`near-places__card ${className}`} {...restProps} wrapperClassName="near-places__image-wrapper" infoClassName="near-places__card-info" />
+    <PlaceCard className={`favorites__card ${className}`} {...restProps}
+      wrapperClassName="favorites__image-wrapper"
+      infoClassName="favorites__card-info"
+      width={150}
+      height={110} />
   );
 };
 

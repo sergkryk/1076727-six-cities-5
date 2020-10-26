@@ -8,8 +8,11 @@ const PlaceCard = (props) => {
     cardHoverHandler,
     history,
     offer: {pictures, title, price, type, rating, id},
-    className,
-    // options: {articleClassName, wrapperClassName, infoClassName, image: {imgWidth, imgHeight}},
+    className = `cities__place-card`,
+    wrapperClassName = `cities__image-wrapper`,
+    infoClassName = `cities__card-info`,
+    width = 260,
+    height = 200,
   } = props;
 
   const cardClickHandler = (evt) => {
@@ -19,15 +22,12 @@ const PlaceCard = (props) => {
 
   return (
     <article className={`${className} place-card`} onMouseEnter={cardHoverHandler} onClick={cardClickHandler}>
-      {/* <div className={`${wrapperClassName} place-card__image-wrapper`}> */}
-      <div className={`place-card__image-wrapper`}>
+      <div className={`${wrapperClassName} place-card__image-wrapper`}>
         <a href="#">
-          {/* <img className="place-card__image" src={pictures[0]} width={imgWidth} height={imgHeight} alt={title}/> */}
-          <img className="place-card__image" src={pictures[0]} width="260" height="200" alt={title}/>
+          <img className="place-card__image" src={pictures[0]} width={width} height={height} alt={title}/>
         </a>
       </div>
-      {/* <div className={`${infoClassName} place-card__info`}> */}
-      <div className={`place-card__info`}>
+      <div className={`${infoClassName} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -57,17 +57,13 @@ const PlaceCard = (props) => {
 
 PlaceCard.propTypes = {
   cardHoverHandler: PropTypes.func.isRequired,
+  className: PropTypes.string,
   history: PropTypes.object.isRequired,
+  height: PropTypes.number,
+  infoClassName: PropTypes.string,
   offer: PropTypes.shape(propTypeOffer).isRequired,
-  options: PropTypes.shape({
-    articleClassName: PropTypes.string.isRequired,
-    image: PropTypes.shape({
-      imgWidth: PropTypes.number.isRequired,
-      imgHeight: PropTypes.number.isRequired,
-    }),
-    infoClassName: PropTypes.string.isRequired,
-    wrapperClassName: PropTypes.string.isRequired,
-  }),
+  width: PropTypes.number,
+  wrapperClassName: PropTypes.string,
 };
 
 export default PlaceCard;

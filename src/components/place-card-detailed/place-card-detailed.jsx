@@ -10,7 +10,7 @@ const PlaceCardDetailed = (props) => {
   const {offers, reviews, id, history} = props;
 
   const currentOffer = offers.filter((offer) => offer.id === parseInt(id, 10))[0];
-  const favOffers = offers.filter((offer) => offer !== currentOffer && offer.city === currentOffer.city).slice(0, 3);
+  const nearOffers = offers.filter((offer) => offer !== currentOffer && offer.city === currentOffer.city).slice(0, 3);
 
   const options = {
     articleClassName: `near-places__card`,
@@ -140,7 +140,7 @@ const PlaceCardDetailed = (props) => {
               </div>
             </div>
             <section className="property__map map">
-              <Map offers={offers} />
+              <Map offers={nearOffers} />
             </section>
           </section>
         }
@@ -149,7 +149,8 @@ const PlaceCardDetailed = (props) => {
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
               {<OffersList
-                offers={favOffers}
+                type = {`near`}
+                offers={nearOffers}
                 history={history}
                 options = {options}
               />}
