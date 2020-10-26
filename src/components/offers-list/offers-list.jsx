@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import PlaceCard from "../place-card/place-card";
+// import PlaceCard from "../place-card/place-card";
+import PlaceCardNear from "../place-card-near/place-card-near";
 import {propTypeOffer} from "../../check-prop-types";
 
 class OffersList extends PureComponent {
@@ -19,15 +20,14 @@ class OffersList extends PureComponent {
   }
 
   render() {
-    const {history, offers, options} = this.props;
+    const {history, offers} = this.props;
 
     return (
       offers.map((offer) => (
-        <PlaceCard
+        <PlaceCardNear
           cardHoverHandler={this.cardHoverHandler}
           offer={offer}
           history={history}
-          options={options}
           key={offer.id}/>
       ))
     );

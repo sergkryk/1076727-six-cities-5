@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import OffersList from "../offers-list/offers-list";
-import ReviewForm from "../review-form/review-form";
+import Map from "../map/map";
+import ReviewList from "../review-list/review-list";
 import {propTypeOffer, propTypeReview} from "../../check-prop-types";
 
 
@@ -9,8 +10,8 @@ const PlaceCardDetailed = (props) => {
   const {offers, reviews, id, history} = props;
 
   const currentOffer = offers.filter((offer) => offer.id === parseInt(id, 10))[0];
-  const currentReviews = reviews.filter((review) => review.id === currentOffer.id);
   const favOffers = offers.filter((offer) => offer !== currentOffer && offer.city === currentOffer.city).slice(0, 3);
+
   const options = {
     articleClassName: `near-places__card`,
     wrapperClassName: `near-places__image-wrapper`,
@@ -19,10 +20,6 @@ const PlaceCardDetailed = (props) => {
       imgWidth: 260,
       imgHeight: 200,
     }
-  };
-
-  const getReviewDate = (date) => {
-    return `${date.toLocaleString(`en`, {month: `long`})} ${date.getFullYear()}`;
   };
 
   return (
@@ -139,41 +136,12 @@ const PlaceCardDetailed = (props) => {
                     ))}
                   </div>
                 </div>
-                <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{currentReviews.length}</span></h2>
-                  <ul className="reviews__list">
-                    {currentReviews.map((review) =>
-                      (
-                        <li className="reviews__item" key={review.avatar}>
-                          <div className="reviews__user user">
-                            <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                              <img className="reviews__avatar user__avatar" src={review.avatar} width="54" height="54" alt="Reviews avatar"/>
-                            </div>
-                            <span className="reviews__user-name">
-                              {review.name}
-                            </span>
-                          </div>
-                          <div className="reviews__info">
-                            <div className="reviews__rating rating">
-                              <div className="reviews__stars rating__stars">
-                                <span style={{width: `${review.rating * 20}%`}}></span>
-                                <span className="visually-hidden">Rating</span>
-                              </div>
-                            </div>
-                            <p className="reviews__text">
-                              {review.content}
-                            </p>
-                            <time className="reviews__time" dateTime={review.date}>{getReviewDate(review.date)}</time>
-                          </div>
-                        </li>
-                      )
-                    )}
-                  </ul>
-                  {<ReviewForm />}
-                </section>
+                <ReviewList id={id} reviews={reviews} />
               </div>
             </div>
-            <section className="property__map map"></section>
+            <section className="property__map map">
+              <Map offers={offers} />
+            </section>
           </section>
         }
         <div className="container">

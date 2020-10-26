@@ -8,7 +8,8 @@ const PlaceCard = (props) => {
     cardHoverHandler,
     history,
     offer: {pictures, title, price, type, rating, id},
-    options: {articleClassName, wrapperClassName, infoClassName, image: {imgWidth, imgHeight}},
+    className,
+    // options: {articleClassName, wrapperClassName, infoClassName, image: {imgWidth, imgHeight}},
   } = props;
 
   const cardClickHandler = (evt) => {
@@ -17,13 +18,16 @@ const PlaceCard = (props) => {
   };
 
   return (
-    <article className={`${articleClassName} place-card`} onMouseEnter={cardHoverHandler} onClick={cardClickHandler}>
-      <div className={`${wrapperClassName} place-card__image-wrapper`}>
+    <article className={`${className} place-card`} onMouseEnter={cardHoverHandler} onClick={cardClickHandler}>
+      {/* <div className={`${wrapperClassName} place-card__image-wrapper`}> */}
+      <div className={`place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={pictures[0]} width={imgWidth} height={imgHeight} alt={title}/>
+          {/* <img className="place-card__image" src={pictures[0]} width={imgWidth} height={imgHeight} alt={title}/> */}
+          <img className="place-card__image" src={pictures[0]} width="260" height="200" alt={title}/>
         </a>
       </div>
-      <div className={`${infoClassName} place-card__info`}>
+      {/* <div className={`${infoClassName} place-card__info`}> */}
+      <div className={`place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
