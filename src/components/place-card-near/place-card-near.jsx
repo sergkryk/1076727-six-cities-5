@@ -5,10 +5,13 @@ import PlaceCard from "../place-card/place-card";
 const PlaceCardNear = (props) => {
   const {className = ``} = props;
   const restProps = Object.assign({}, props);
-  delete restProps.className;
 
   return (
-    <PlaceCard className={`near-places__card ${className}`} {...restProps} wrapperClassName="near-places__image-wrapper" infoClassName="near-places__card-info" />
+    <PlaceCard
+      {...restProps}
+      className={`near-places__card ${className}`}
+      wrapperClassName="near-places__image-wrapper"
+      infoClassName="near-places__card-info" />
   );
 };
 

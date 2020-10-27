@@ -5,10 +5,11 @@ import PlaceCard from "../place-card/place-card";
 const PlaceCardNear = (props) => {
   const {className = ``} = props;
   const restProps = Object.assign({}, props);
-  delete restProps.className;
 
   return (
-    <PlaceCard className={`favorites__card ${className}`} {...restProps}
+    <PlaceCard
+      {...restProps}
+      className={`favorites__card ${className}`}
       wrapperClassName="favorites__image-wrapper"
       infoClassName="favorites__card-info"
       width={150}
