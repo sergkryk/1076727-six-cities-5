@@ -6,27 +6,27 @@ const MAX_GUESTS = 30;
 const MAX_DESCRIPTIONS = 2;
 const MAX_IMAGES = 6;
 
-const offersCount = 4;
+const offersCount = 50;
 
 const cities = [
+  `Paris`,
+  `Cologne`,
+  `Brussels`,
   `Amsterdam`,
-  // `Cologne`,
-  // `Paris`,
-  // `Brussels`,
-  // `Hamburg`,
-  // `Dusseldorf`,
+  `Hamburg`,
+  `Dusseldorf`,
 ];
 
-const coordinates = [
-  [52.3909553943508,
-    4.85309666406198],
-  [52.369553943508,
-    4.85309666406198],
-  [52.3909553943508,
-    4.929309666406198],
-  [52.3809553943508,
-    4.939309666406198]
-];
+// const coordinates = [
+//   [52.3909553943508,
+//     4.85309666406198],
+//   [52.369553943508,
+//     4.85309666406198],
+//   [52.3909553943508,
+//     4.929309666406198],
+//   [52.3809553943508,
+//     4.939309666406198]
+// ];
 
 const titles = [
   `Park Inn by Radisson Nevsky`,
@@ -195,9 +195,9 @@ const generateMockArray = (itemNumber, foo) => {
     let item = foo();
     item.id = i;
     newArray.push(item);
-    if (item.city) {
-      item.coordinates = coordinates[i];
-    }
+    // if (item.city) {
+    //   item.coordinates = coordinates[i];
+    // }
   }
   return newArray;
 };
@@ -206,4 +206,4 @@ const offers = generateMockArray(offersCount, generateOffer);
 
 const offerReviews = generateMockArray(offersCount, generateReview);
 
-export {offers, offerReviews};
+export {offers, offerReviews, cities};

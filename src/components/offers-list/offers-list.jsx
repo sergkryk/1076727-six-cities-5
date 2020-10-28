@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card";
-import {propTypeOffer} from "../../check-prop-types";
+// import {propTypeOffer} from "../../check-prop-types";
 import PlaceCardNear from "../place-card-near/place-card-near";
 import PlaceCardFavorite from "../place-card-favorite/place-card-favorite";
 
@@ -48,7 +48,7 @@ class OffersList extends PureComponent {
 
 OffersList.propTypes = {
   history: PropTypes.object.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
+  // offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
   type: PropTypes.string,
 };
 
