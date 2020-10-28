@@ -1,9 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card";
-// import {propTypeOffer} from "../../check-prop-types";
-import PlaceCardNear from "../place-card-near/place-card-near";
-import PlaceCardFavorite from "../place-card-favorite/place-card-favorite";
+import {propTypeOffer} from "../../check-prop-types";
+// import PlaceCardNear from "../place-card-near/place-card-near";
+// import PlaceCardFavorite from "../place-card-favorite/place-card-favorite";
+import {connect} from "react-redux";
 
 class OffersList extends PureComponent {
   constructor(props) {
@@ -20,36 +21,62 @@ class OffersList extends PureComponent {
     this.setState({activeCard: evt.currentTarget});
   }
 
-  renderComponents(Component) {
-    const {history, offers} = this.props;
+  // renderComponents(Component) {
+  //   const {history, offers} = this.props;
 
-    return offers.map((offer) => (
-      <Component
-        cardHoverHandler={this.cardHoverHandler}
-        offer={offer}
-        history={history}
-        key={offer.id}/>
-    ));
-  }
+  //   return offers.map((offer) => (
+  //     <Component
+  //       cardHoverHandler={this.cardHoverHandler}
+  //       offer={offer}
+  //       history={history}
+  //       key={offer.id}/>
+  //   ));
+  // }
+
+  // render() {
+  //   const {type = ``} = this.props;
+
+  //   switch (type) {
+  //     case `near`:
+  //       return this.renderComponents(PlaceCardNear);
+  //     case `favorites`:
+  //       return this.renderComponents(PlaceCardFavorite);
+  //     default:
+  //       return this.renderComponents(PlaceCard);
+  //   }
+  // }
 
   render() {
-    const {type = ``} = this.props;
+    const {citySelected, history, offers} = this.props;
 
-    switch (type) {
-      case `near`:
-        return this.renderComponents(PlaceCardNear);
-      case `favorites`:
-        return this.renderComponents(PlaceCardFavorite);
-      default:
-        return this.renderComponents(PlaceCard);
-    }
+    return (
+      offers.map((offer) => {
+        if (offer.city === citySelected) {
+          return (
+            <PlaceCard
+              cardHoverHandler={this.cardHoverHandler}
+              offer={offer}
+              history={history}
+              key={offer.id}/>
+          );
+        } else {
+          return null;
+        }
+      })
+    );
   }
 }
 
 OffersList.propTypes = {
+  citySelected: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
-  // offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
+  offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
   type: PropTypes.string,
 };
 
-export default OffersList;
+const mapStateToProps = (state) => ({
+  citySelected: state.citySelected,
+});
+
+export {OffersList};
+export default connect(mapStateToProps)(OffersList);

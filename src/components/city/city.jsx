@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 
 
 const City = (props) => {
-  const {city} = props;
+  const {city, changeCity} = props;
 
   const onClickShowOffers = () => {
-    console.log(`You clicked the ${city}`);
+    changeCity(city);
   };
 
   return (
@@ -19,7 +21,15 @@ const City = (props) => {
 };
 
 City.propTypes = {
+  changeCity: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
 };
 
-export default City;
+const mapDispatchToProps = (dispatch) => ({
+  changeCity(city) {
+    dispatch(ActionCreator.changeCity(city));
+  },
+});
+
+export {City};
+export default connect(``, mapDispatchToProps)(City);
