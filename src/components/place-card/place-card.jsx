@@ -5,7 +5,6 @@ import {propTypeOffer} from "../../check-prop-types";
 
 const PlaceCard = (props) => {
   const {
-    cardHoverHandler,
     history,
     offer: {pictures, title, price, type, rating, id},
     className = `cities__place-card`,
@@ -21,7 +20,7 @@ const PlaceCard = (props) => {
   };
 
   return (
-    <article className={`${className} place-card`} onMouseEnter={cardHoverHandler} onClick={cardClickHandler}>
+    <article className={`${className} place-card`} onClick={cardClickHandler}>
       <div className={`${wrapperClassName} place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={pictures[0]} width={width} height={height} alt={title}/>
@@ -56,7 +55,6 @@ const PlaceCard = (props) => {
 };
 
 PlaceCard.propTypes = {
-  cardHoverHandler: PropTypes.func.isRequired,
   className: PropTypes.string,
   history: PropTypes.object.isRequired,
   height: PropTypes.number,

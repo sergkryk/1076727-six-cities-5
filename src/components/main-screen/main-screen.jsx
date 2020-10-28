@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import OffersList from "../offers-list/offers-list";
+import MainTitle from "../main-title/main-title";
 import Map from "../map/map";
 import CitiesList from "../cities-list/cities-list";
 import {propTypeOffer} from "../../check-prop-types";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 
 const MainScreen = (props) => {
-  const {history, offers, placesAvailable} = props;
+  const {citySelected, history, offers} = props;
+  const offersSortedByCitySelected = offers.filter((offer) => offer.city === citySelected);
 
   return (
     <div className="page page--gray page--main">
@@ -42,7 +46,7 @@ const MainScreen = (props) => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesAvailable} places to stay in Amsterdam</b>
+              <MainTitle offersNumber={offersSortedByCitySelected.length} />
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -60,7 +64,7 @@ const MainScreen = (props) => {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <OffersList
-                  offers={offers}
+                  offers={offersSortedByCitySelected}
                   history={history}
                 />
               </div>
@@ -78,9 +82,14 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
+  citySelected: PropTypes.string.isRequired,
   history: PropTypes.object,
-  placesAvailable: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
 };
 
-export default MainScreen;
+const mapStateToProps = (state) => ({
+  citySelected: state.citySelected,
+});
+
+export {MainScreen};
+export default connect(mapStateToProps)(MainScreen);

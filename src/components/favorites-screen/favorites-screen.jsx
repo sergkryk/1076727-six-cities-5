@@ -50,7 +50,7 @@ const FavoritesScreen = (props) => {
                   </div>
                   <div className="favorites__places">
                     {<OffersList
-                      type={`favorites`}
+                      type={`favorite`}
                       offers={favorites.filter((item) => item.city === city)}
                       history={history}
                     />}
