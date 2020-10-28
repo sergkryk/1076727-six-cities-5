@@ -6,7 +6,6 @@ import Map from "../map/map";
 import CitiesList from "../cities-list/cities-list";
 import {propTypeOffer} from "../../check-prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/action";
 
 const MainScreen = (props) => {
   const {citySelected, history, offers} = props;

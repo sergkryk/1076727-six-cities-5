@@ -12,14 +12,14 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    const {offers} = this.props;
+    // const {offers} = this.props;
 
     const zoom = 12;
     const city = [52.38333, 4.9];
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
-    });
+    // const icon = leaflet.icon({
+    //   iconUrl: `img/pin.svg`,
+    //   iconSize: [30, 30]
+    // });
 
     this.map = leaflet.map(`map`, {
       center: city,
