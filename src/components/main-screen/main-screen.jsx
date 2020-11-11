@@ -70,7 +70,7 @@ const MainScreen = (props) => {
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map offers={offers} />
+                <Map />
               </section>
             </div>
           </div>

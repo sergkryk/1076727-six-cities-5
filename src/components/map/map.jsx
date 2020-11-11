@@ -3,19 +3,28 @@ import PropTypes from "prop-types";
 import leaflet from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {propTypeOffer} from "../../check-prop-types";
+import {connect} from "react-redux";
+import {citiesCoordinates} from "../../mocks/offers";
 
 class Map extends PureComponent {
   constructor(props) {
     super(props);
 
     this.map = null;
+    this.city = ``;
+
   }
 
-  componentDidMount() {
-    // const {offers} = this.props;
+  _updateCity() {
+    const {citySelected} = this.props;
+    this.city = citySelected;
+  }
+
+  _initMap() {
+    this._updateCity();
 
     const zoom = 12;
-    const city = [52.38333, 4.9];
+    const city = citiesCoordinates[this.city];
     // const icon = leaflet.icon({
     //   iconUrl: `img/pin.svg`,
     //   iconSize: [30, 30]
@@ -40,6 +49,15 @@ class Map extends PureComponent {
     // });
   }
 
+  componentDidMount() {
+    this._initMap();
+  }
+
+  componentDidUpdate() {
+    this._updateCity();
+    this.map.setView(citiesCoordinates[this.city], 12);
+  }
+
   componentWillUnmount() {
     this.map.remove();
   }
@@ -53,4 +71,9 @@ Map.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
 };
 
-export default Map;
+const mapStateToProps = (state) => ({
+  citySelected: state.citySelected,
+});
+
+export {Map};
+export default connect(mapStateToProps)(Map);
