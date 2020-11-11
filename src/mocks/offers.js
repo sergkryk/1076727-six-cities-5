@@ -17,6 +17,15 @@ const cities = [
   `Dusseldorf`,
 ];
 
+const citiesCoordinates = {
+  Amsterdam: [52.38333, 4.9],
+  Brussels: [50.85045, 4.34878],
+  Cologne: [50.93333, 6.95],
+  Dusseldorf: [51.22172, 6.77616],
+  Hamburg: [53.57532, 10.01534],
+  Paris: [48.85341, 2.3488],
+};
+
 // const coordinates = [
 //   [52.3909553943508,
 //     4.85309666406198],
@@ -206,4 +215,4 @@ const offers = generateMockArray(offersCount, generateOffer);
 
 const offerReviews = generateMockArray(offersCount, generateReview);
 
-export {offers, offerReviews, cities};
+export {offers, offerReviews, cities, citiesCoordinates};
