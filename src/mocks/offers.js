@@ -6,27 +6,64 @@ const MAX_GUESTS = 30;
 const MAX_DESCRIPTIONS = 2;
 const MAX_IMAGES = 6;
 
-const offersCount = 4;
+const offersCount = 30;
 
 const cities = [
+  `Paris`,
+  `Cologne`,
+  `Brussels`,
   `Amsterdam`,
-  // `Cologne`,
-  // `Paris`,
-  // `Brussels`,
-  // `Hamburg`,
-  // `Dusseldorf`,
+  `Hamburg`,
+  `Dusseldorf`,
 ];
 
-const coordinates = [
-  [52.3909553943508,
-    4.85309666406198],
-  [52.369553943508,
-    4.85309666406198],
-  [52.3909553943508,
-    4.929309666406198],
-  [52.3809553943508,
-    4.939309666406198]
-];
+const citiesCoordinates = {
+  Amsterdam: [52.38333, 4.9],
+  Brussels: [50.85045, 4.34878],
+  Cologne: [50.93333, 6.95],
+  Dusseldorf: [51.22172, 6.77616],
+  Hamburg: [53.57532, 10.01534],
+  Paris: [48.85341, 2.3488],
+};
+
+const offersCoordinates = {
+  Paris: [
+    [48.87304, 2.36760],
+    [48.86717, 2.33875],
+    [48.85905, 2.32639],
+    [48.86131, 2.36211]
+  ],
+  Cologne: [
+    [50.93916, 6.95087],
+    [50.94695, 6.96117],
+    [50.93397, 6.95671],
+    [50.93376, 6.96083]
+  ],
+  Brussels: [
+    [50.85475, 4.34939],
+    [50.84619, 4.37583],
+    [50.84446, 4.33342],
+    [50.83525, 4.36141]
+  ],
+  Amsterdam: [
+    [52.3909553943508, 4.85309666406198],
+    [52.369553943508, 4.85309666406198],
+    [52.3909553943508, 4.929309666406198],
+    [52.3809553943508, 4.939309666406198]
+  ],
+  Hamburg: [
+    [53.55181, 9.98233],
+    [53.55393, 10.00042],
+    [53.54894, 9.99321],
+    [53.54730, 9.98102]
+  ],
+  Dusseldorf: [
+    [51.23042, 6.78342],
+    [51.22784, 6.80402],
+    [51.22612, 6.77380],
+    [51.21881, 51.21881]
+  ],
+};
 
 const titles = [
   `Park Inn by Radisson Nevsky`,
@@ -195,9 +232,9 @@ const generateMockArray = (itemNumber, foo) => {
     let item = foo();
     item.id = i;
     newArray.push(item);
-    if (item.city) {
-      item.coordinates = coordinates[i];
-    }
+    // if (item.city) {
+    //   item.coordinates = coordinates[i];
+    // }
   }
   return newArray;
 };
@@ -206,4 +243,4 @@ const offers = generateMockArray(offersCount, generateOffer);
 
 const offerReviews = generateMockArray(offersCount, generateReview);
 
-export {offers, offerReviews};
+export {offers, offerReviews, cities, citiesCoordinates, offersCoordinates};

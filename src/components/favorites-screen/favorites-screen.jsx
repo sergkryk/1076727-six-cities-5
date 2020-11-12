@@ -6,16 +6,6 @@ import {propTypeOffer} from "../../check-prop-types";
 const FavoritesScreen = (props) => {
   const {history, offers} = props;
 
-  const options = {
-    articleClassName: `favorites__card`,
-    wrapperClassName: `favorites__image-wrapper`,
-    infoClassName: `favorites__card-info`,
-    image: {
-      imgWidth: 150,
-      imgHeight: 110,
-    }
-  };
-
   const favorites = offers.filter((offer) => offer.isFavorite);
   const cities = [...new Set(favorites.map((offer) => offer.city))];
 
@@ -60,9 +50,9 @@ const FavoritesScreen = (props) => {
                   </div>
                   <div className="favorites__places">
                     {<OffersList
+                      type={`favorite`}
                       offers={favorites.filter((item) => item.city === city)}
                       history={history}
-                      options={options}
                     />}
                   </div>
                 </li>
