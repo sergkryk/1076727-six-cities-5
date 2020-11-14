@@ -6,6 +6,7 @@ const initialState = {
   citySelected: cities[0],
   offers,
   cities,
+  sortType: `POPULAR`,
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,6 +15,11 @@ const reducer = (state = initialState, action) => {
       let newCity = action.payload;
       return extend(state, {
         citySelected: newCity,
+      });
+    case ActionType.SORT_OFFERS_BY_TYPE:
+      let newSortType = action.payload;
+      return extend(state, {
+        sortType: newSortType,
       });
   }
 
