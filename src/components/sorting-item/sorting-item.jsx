@@ -1,47 +1,40 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 
 
-class SortingItem extends PureComponent {
-  constructor(props) {
-    super(props);
+const SortingItem = (props) => {
+  const {item, sortType, updateSortType, changeState} = props;
 
-    this.sortOffers = this.props.sortOffers;
-    this.item = this.props.item;
+  const handleClick = () => {
+    updateSortType(item.type);
+    changeState();
+  };
 
-    this._handleClick = this._handleClick.bind(this);
-
-    this.state = {
-      active: `POPULAR`,
-    };
-  }
-
-  _handleClick() {
-    this.sortOffers(this.item.type);
-  }
-
-  render() {
-    return (
-      <li className={`places__option ${this.item.type === this.state.active ? `places__option--active` : ``}`} tabIndex="0" onClick={this._handleClick}>{this.item.content}</li>
-    );
-  }
-}
+  return (
+    <li className={`places__option ${item.type === sortType ? `places__option--active` : ``}`} tabIndex="0" onClick={handleClick}>{item.type}</li>
+  );
+};
 
 SortingItem.propTypes = {
   item: PropTypes.shape({
-    content: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   }),
-  sortOffers: PropTypes.func.isRequired,
+  updateSortType: PropTypes.func.isRequired,
+  changeState: PropTypes.func.isRequired,
+  sortType: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  sortOffers(type) {
-    dispatch(ActionCreator.sortOffers(type));
+  updateSortType(type) {
+    dispatch(ActionCreator.updateSortType(type));
   },
 });
 
+const mapStateToProps = (state) => ({
+  sortType: state.sortType,
+});
+
 export {SortingItem};
-export default connect(``, mapDispatchToProps)(SortingItem);
+export default connect(mapStateToProps, mapDispatchToProps)(SortingItem);

@@ -5,13 +5,16 @@ import {propTypeOffer} from "../../check-prop-types";
 import {ActionCreator} from "../../store/action";
 import {SortType} from "../../const";
 import SortingItem from "../sorting-item/sorting-item";
+import SortingButton from "../sorting-button/sorting-button";
 
 class SortingList extends PureComponent {
   constructor(props) {
     super(props);
     this.offers = this.props.offers;
+    this.sortType = this.props.sortType;
 
     this._handleSortClick = this._handleSortClick.bind(this);
+    this._toggleSelect = this._toggleSelect.bind(this);
 
     this.state = {
       opened: false,
@@ -19,6 +22,10 @@ class SortingList extends PureComponent {
   }
 
   _handleSortClick() {
+    this._toggleSelect();
+  }
+
+  _toggleSelect() {
     this.setState((prevState) => ({opened: !prevState.opened}));
   }
 
@@ -38,15 +45,10 @@ class SortingList extends PureComponent {
     return (
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
-        <span className="places__sorting-type" tabIndex="0" onClick={this._handleSortClick}>
-          Popular
-          <svg className="places__sorting-arrow" width="7" height="4">
-            <use xlinkHref="#icon-arrow-select"></use>
-          </svg>
-        </span>
+        <SortingButton handleClick={this._toggleSelect} sortType={this.sortType}/>
         <ul className={`places__options places__options--custom ${this.state.opened ? `places__options--opened` : ``}`}>
           {SortType.map((item) => (
-            <SortingItem item={item} key={item.content} />
+            <SortingItem item={item} key={item.type} changeState={this._toggleSelect}/>
           ))}
         </ul>
       </form>
@@ -56,6 +58,7 @@ class SortingList extends PureComponent {
 
 SortingList.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
+  sortType: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -66,6 +69,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   offers: state.offers,
+  sortType: state.sortType,
 });
 
 export {SortingList};

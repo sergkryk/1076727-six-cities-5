@@ -7,10 +7,13 @@ import CitiesList from "../cities-list/cities-list";
 import SortingList from "../sorting-list/sorting-list";
 import {propTypeOffer} from "../../check-prop-types";
 import {connect} from "react-redux";
+import {getOffersByCity, sortArray} from "../../utils";
+import {ActionCreator} from "../../store/action";
 
 const MainScreen = (props) => {
-  const {citySelected, history, offers} = props;
-  const offersSortedByCitySelected = offers.filter((offer) => offer.city === citySelected);
+  const {citySelected, history, sortType, offers} = props;
+  const offersSortedByCitySelected = getOffersByCity(offers, citySelected);
+  const sortedOffers = sortArray(offersSortedByCitySelected, sortType);
 
   return (
     <div className="page page--gray page--main">
@@ -50,14 +53,14 @@ const MainScreen = (props) => {
               <SortingList />
               <div className="cities__places-list places__list tabs__content">
                 <OffersList
-                  offers={offersSortedByCitySelected}
+                  offers={sortedOffers}
                   history={history}
                 />
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map offers={offersSortedByCitySelected}/>
+                <Map offers={sortedOffers}/>
               </section>
             </div>
           </div>
@@ -71,11 +74,19 @@ MainScreen.propTypes = {
   citySelected: PropTypes.string.isRequired,
   history: PropTypes.object,
   offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
+  sortType: PropTypes.string.isRequired,
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  updateCityOffers(city) {
+    dispatch(ActionCreator.updateCityOffers(city));
+  },
+});
 
 const mapStateToProps = (state) => ({
   citySelected: state.citySelected,
+  sortType: state.sortType,
 });
 
 export {MainScreen};
-export default connect(mapStateToProps)(MainScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
