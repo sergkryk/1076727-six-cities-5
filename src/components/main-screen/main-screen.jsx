@@ -6,8 +6,8 @@ import Map from "../map/map";
 import CitiesList from "../cities-list/cities-list";
 import SortingList from "../sorting-list/sorting-list";
 import {propTypeOffer} from "../../check-prop-types";
-import {connect} from "react-redux";
 import {getOffersByCity, sortArray} from "../../utils";
+import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 
 const MainScreen = (props) => {
