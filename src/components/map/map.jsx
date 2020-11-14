@@ -4,7 +4,7 @@ import leaflet from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {propTypeOffer} from "../../check-prop-types";
 import {connect} from "react-redux";
-import {citiesCoordinates, offersCoordinates} from "../../mocks/offers";
+import {citiesCoordinates} from "../../mocks/offers";
 
 class Map extends PureComponent {
   constructor(props) {
@@ -43,13 +43,14 @@ class Map extends PureComponent {
   }
 
   _placeOffersOnMap() {
+    const {offers} = this.props;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
 
-    offersCoordinates[this.city].forEach((offer) => {
-      let marker = leaflet.marker(offer, {icon});
+    offers.forEach((offer) => {
+      let marker = leaflet.marker(offer.location, {icon});
       marker.addTo(this.map);
       this.offersMarker.push(marker);
     });
