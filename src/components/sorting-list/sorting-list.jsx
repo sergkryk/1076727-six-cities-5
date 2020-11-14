@@ -29,18 +29,6 @@ class SortingList extends PureComponent {
     this.setState((prevState) => ({opened: !prevState.opened}));
   }
 
-  componentDidMount() {
-    console.log(`success`);
-  }
-
-  componentDidUpdate() {
-    console.log(`updated`);
-  }
-
-  componentWillUnmount() {
-    console.log(`deleted`);
-  }
-
   render() {
     return (
       <form className="places__sorting" action="#" method="get">
