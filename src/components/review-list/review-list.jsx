@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReviewForm from "../review-form/review-form";
 import Review from "../review/review";
-import {propTypeOffer, propTypeReview} from "../../check-prop-types";
+import {propTypeReview} from "../../check-prop-types";
 
 
 const ReviewList = (props) => {
@@ -23,7 +23,6 @@ const ReviewList = (props) => {
 
 ReviewList.propTypes = {
   id: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
   reviews: PropTypes.arrayOf(PropTypes.shape(propTypeReview).isRequired),
 };
 

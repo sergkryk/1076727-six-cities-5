@@ -4,7 +4,7 @@ import leaflet from "leaflet";
 import "leaflet/dist/leaflet.css";
 import {propTypeOffer} from "../../check-prop-types";
 import {connect} from "react-redux";
-import {citiesCoordinates, offersCoordinates} from "../../mocks/offers";
+import {citiesCoordinates} from "../../mocks/offers";
 
 class Map extends PureComponent {
   constructor(props) {
@@ -13,7 +13,6 @@ class Map extends PureComponent {
     this.map = null;
     this.offersMarker = [];
     this.city = ``;
-
   }
 
   _updateCity() {
@@ -43,14 +42,24 @@ class Map extends PureComponent {
   }
 
   _placeOffersOnMap() {
+    const {offers, activePlace} = this.props;
+
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize: [27, 39]
     });
 
-    offersCoordinates[this.city].forEach((offer) => {
-      let marker = leaflet.marker(offer, {icon});
+    const iconActive = leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [27, 39]
+    });
+
+    offers.forEach((offer) => {
+      let marker = leaflet.marker(offer.location, {icon});
       marker.addTo(this.map);
+      if (activePlace === offer.id) {
+        marker.setIcon(iconActive);
+      }
       this.offersMarker.push(marker);
     });
   }
@@ -84,11 +93,13 @@ class Map extends PureComponent {
 }
 
 Map.propTypes = {
+  activePlace: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   citySelected: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
 };
 
 const mapStateToProps = (state) => ({
+  activePlace: state.activePlace,
   citySelected: state.citySelected,
 });
 

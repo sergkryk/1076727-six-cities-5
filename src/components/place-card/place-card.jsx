@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {propTypeOffer} from "../../check-prop-types";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 
 
 const PlaceCard = (props) => {
@@ -12,6 +14,7 @@ const PlaceCard = (props) => {
     infoClassName = `cities__card-info`,
     width = 260,
     height = 200,
+    updateActivePlace,
   } = props;
 
   const cardClickHandler = (evt) => {
@@ -19,8 +22,16 @@ const PlaceCard = (props) => {
     history.push(`/offer/${id}`);
   };
 
+  const handleMouseEnter = () => {
+    updateActivePlace(id);
+  };
+
+  const handleMouseLeave = () => {
+    updateActivePlace(``);
+  };
+
   return (
-    <article className={`${className} place-card`} onClick={cardClickHandler}>
+    <article className={`${className} place-card`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={cardClickHandler}>
       <div className={`${wrapperClassName} place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={pictures[0]} width={width} height={height} alt={title}/>
@@ -62,6 +73,19 @@ PlaceCard.propTypes = {
   offer: PropTypes.shape(propTypeOffer).isRequired,
   width: PropTypes.number,
   wrapperClassName: PropTypes.string,
+  updateActivePlace: PropTypes.func.isRequired
 };
 
-export default PlaceCard;
+const mapDispatchToProps = (dispatch) => ({
+  updateActivePlace(place) {
+    dispatch(ActionCreator.updateActivePlace(place));
+  },
+});
+
+// const mapStateToProps = (state) => ({
+//   citySelected: state.citySelected,
+//   sortType: state.sortType,
+// });
+
+export {PlaceCard};
+export default connect(``, mapDispatchToProps)(PlaceCard);

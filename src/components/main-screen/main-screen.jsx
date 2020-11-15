@@ -4,12 +4,16 @@ import OffersList from "../offers-list/offers-list";
 import MainTitle from "../main-title/main-title";
 import Map from "../map/map";
 import CitiesList from "../cities-list/cities-list";
+import SortingList from "../sorting-list/sorting-list";
 import {propTypeOffer} from "../../check-prop-types";
+import {getOffersByCity, sortArray} from "../../utils";
 import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 
 const MainScreen = (props) => {
-  const {citySelected, history, offers} = props;
-  const offersSortedByCitySelected = offers.filter((offer) => offer.city === citySelected);
+  const {citySelected, history, sortType, offers} = props;
+  const offersSortedByCitySelected = getOffersByCity(offers, citySelected);
+  const sortedOffers = sortArray(offersSortedByCitySelected, sortType);
 
   return (
     <div className="page page--gray page--main">
@@ -46,31 +50,17 @@ const MainScreen = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <MainTitle offersNumber={offersSortedByCitySelected.length} />
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                  <li className="places__option" tabIndex="0">Price: low to high</li>
-                  <li className="places__option" tabIndex="0">Price: high to low</li>
-                  <li className="places__option" tabIndex="0">Top rated first</li>
-                </ul>
-              </form>
+              <SortingList />
               <div className="cities__places-list places__list tabs__content">
                 <OffersList
-                  offers={offersSortedByCitySelected}
+                  offers={sortedOffers}
                   history={history}
                 />
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map />
+                <Map offers={sortedOffers}/>
               </section>
             </div>
           </div>
@@ -84,11 +74,19 @@ MainScreen.propTypes = {
   citySelected: PropTypes.string.isRequired,
   history: PropTypes.object,
   offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
+  sortType: PropTypes.string.isRequired,
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  updateCityOffers(city) {
+    dispatch(ActionCreator.updateCityOffers(city));
+  },
+});
 
 const mapStateToProps = (state) => ({
   citySelected: state.citySelected,
+  sortType: state.sortType,
 });
 
 export {MainScreen};
-export default connect(mapStateToProps)(MainScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
