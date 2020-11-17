@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import ReviewForm from "../review-form/review-form";
 import Review from "../review/review";
 import {propTypeReview} from "../../check-prop-types";
+import withFormField from "../../hoc/with-form-field/with-form-field";
+
+const ReviewFormWrapped = withFormField(ReviewForm);
 
 
 const ReviewList = (props) => {
@@ -16,7 +19,7 @@ const ReviewList = (props) => {
       <ul className="reviews__list">
         {reviewsToShow.map((review) => <Review review={review} key={review.id}/>)}
       </ul>
-      {<ReviewForm />}
+      {<ReviewFormWrapped />}
     </section>
   );
 };
