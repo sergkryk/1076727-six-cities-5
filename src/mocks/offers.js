@@ -1,11 +1,4 @@
-// const imageUrl = `https://source.unsplash.com/collection/1163637/260x200?sig=`;
 const avatarUrl = `https://api.adorable.io/avatars/`;
-// const MAX_PRICE = 1000;
-// const MAX__BEDROOMS = 10;
-// const MAX_GUESTS = 30;
-// const MAX_DESCRIPTIONS = 2;
-// const MAX_IMAGES = 6;
-
 const offersCount = 30;
 
 const cities = [
@@ -16,36 +9,6 @@ const cities = [
   `Hamburg`,
   `Dusseldorf`,
 ];
-
-// const titles = [
-//   `Park Inn by Radisson Nevsky`,
-//   `Original Sokos Hotel Olympia Garden`,
-//   `Radisson Sonya Hotel`,
-//   `Majestic Boutique Hotel Deluxe`,
-//   `Belmond Grand Hotel Europe`,
-//   `Rocco Forte Astoria Hotel`,
-//   `Angleterre Hotel`,
-//   `Four Seasons Hotel Lion Palace`,
-//   `Agent Flat Apartment`,
-//   `Grani Aparthotel`,
-//   `Apart-Hotel Victoria Bolshaya Morskaya 3-5`,
-//   `Beautiful & luxurious studio at great location`,
-//   `Bed&Bath Luxury Apartments`,
-//   `Akyan St.Petersburg`
-// ];
-
-// const descriptions = [
-//   `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-//   `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-//   `Professional and friendly staff will do everything to make clients feel like at home. It’s important for us to leave you only positive emotions and an excellent mood.`,
-//   `The history of surroundings is truly rich and attractive from a cultural point of view. In this area reigns the atmosphere of Pushkin, bohemian and aristocratic Petersburg.`,
-//   `The hotel is situated in a quiet courtyard. This, together with comfortable beds, provides for a good night’s rest. Among other advantages - free WiFi, continental breakfast and complimentary cold & hot drinking water.`,
-//   `Our warm and friendly team is always there to help you with whatever questions you may have. Having a vast knowledge of the local area we’ll gladly offer you valuable advice on how to plan your day, arrange guided tours in the city & the suburbs.`,
-//   `Location of our hotel is just amazing: a minute’s walk from Nevsky Prospect and within minutes of Palace Square & the Hermitage. Art galleries, cafés, restaurants of every kind are all around it. The location is truly unbeatable.`,
-//   `We offer diverse accommodations: comfortable standard and superior rooms, suites equipped with Jacuzzi and sauna. WiFi internet is complimentary.`,
-//   `Our warm and friendly team is always there to help you with whatever questions you may think of. Having a vast knowledge of the local area we'll gladly offer you valuable advice on how to plan your day, arrange guided tours in the city & the suburbs.`,
-//   `Our hotel is superbly located: just a minute’s walk from Nevsky Prospect and within minutes of Palace Square, the Hermitage, the Field of Mars and the Church of Our Savior on Blood. There’s no better location anywhere in the city.`,
-// ];
 
 const hostNames = [
   `Peter`,
@@ -68,37 +31,6 @@ const hostNames = [
   `Louise`,
   `Sarah`,
 ];
-
-// const types = [
-//   `Hotel`,
-//   `Apartment`,
-//   `Guest house`,
-//   `Villa`,
-//   `Campsite`,
-//   `Hostel`
-// ];
-
-// const features = [
-//   `Wi-Fi`,
-//   `Heating`,
-//   `Kitchen`,
-//   `Fridge`,
-//   `Washing machine`,
-//   `Coffee machine`,
-//   `Dishwasher`,
-//   `Towels`,
-//   `Baby seat`,
-//   `Cabel TV`,
-//   `Air conditioning`,
-//   `Minibar`,
-//   `Safety deposit box`,
-//   `Spa and wellness centre`,
-//   `Family rooms`,
-//   `Airport shuttle`,
-//   `Non-smoking rooms`,
-//   `Fitness centre`,
-//   `Bar`,
-// ];
 
 const reviews = [
   `The hotel is fantastically located - you can walk everywhere. All staff were extremely helpful & friendly.`,
@@ -127,46 +59,9 @@ const getRandomAvatar = () => {
   return avatarUrl + Math.floor((Math.random() * 100));
 };
 
-// const getRandomBoolean = () => {
-//   return Math.random() > 0.5;
-// };
-
-// const getImgUrl = (pictCount) => {
-//   const pictures = [];
-//   for (let i = 1; i <= pictCount; i++) {
-//     const url = `${imageUrl}${Math.floor(Math.random() * 1000)}`;
-//     pictures.push(url);
-//   }
-//   return pictures;
-// };
-
-// const getRandomArray = (array) => array.filter(() => getRandomBoolean());
-
 const getRandomArrayItem = (array) => {
   return array[Math.floor(Math.random() * array.length)];
 };
-
-// const generateOffer = () => {
-//   return {
-//     bedrooms: Math.floor(Math.random() * MAX__BEDROOMS),
-//     city: getRandomArrayItem(cities),
-//     description: getRandomArray(descriptions).slice(0, MAX_DESCRIPTIONS),
-//     features: getRandomArray(features),
-//     guests: Math.floor(Math.random() * MAX_GUESTS),
-//     host: {
-//       avatar: getRandomAvatar(),
-//       name: getRandomArrayItem(hostNames),
-//       pro: getRandomBoolean(),
-//     },
-//     isFavorite: getRandomBoolean(),
-//     pictures: getImgUrl(MAX_IMAGES),
-//     premium: getRandomBoolean(),
-//     price: Math.floor(Math.random() * MAX_PRICE),
-//     rating: Math.floor((Math.random() * 50)) / 10,
-//     title: getRandomArrayItem(titles),
-//     type: getRandomArrayItem(types),
-//   };
-// };
 
 const generateReview = () => {
   return {
@@ -187,8 +82,6 @@ const generateMockArray = (itemNumber, foo) => {
   }
   return newArray;
 };
-
-// const offers = generateMockArray(offersCount, generateOffer);
 
 const offerReviews = generateMockArray(offersCount, generateReview);
 

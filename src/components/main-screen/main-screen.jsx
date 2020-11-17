@@ -9,6 +9,9 @@ import {propTypeOffer} from "../../check-prop-types";
 import {getOffersByCity, sortArray} from "../../utils";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
+import withActiveState from "../../hoc/with-active-state/with-active-state";
+
+const SortingListWrapped = withActiveState(SortingList);
 
 const MainScreen = (props) => {
   const {citySelected, history, sortType, offers} = props;
@@ -50,7 +53,7 @@ const MainScreen = (props) => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <MainTitle offersNumber={offersSortedByCitySelected.length} />
-              <SortingList />
+              <SortingListWrapped />
               <div className="cities__places-list places__list tabs__content">
                 <OffersList
                   offers={sortedOffers}
