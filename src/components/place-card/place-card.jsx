@@ -8,17 +8,19 @@ import {ActionCreator} from "../../store/action";
 const PlaceCard = (props) => {
   const {
     history,
-    offer: {pictures, title, price, type, rating, id},
+    offer: {pictures, title, price, type, rating, id, city},
     className = `cities__place-card`,
     wrapperClassName = `cities__image-wrapper`,
     infoClassName = `cities__card-info`,
     width = 260,
     height = 200,
     updateActivePlace,
+    changeCity,
   } = props;
 
   const cardClickHandler = (evt) => {
     evt.preventDefault();
+    changeCity(city);
     history.push(`/offer/${id}`);
   };
 
@@ -67,6 +69,7 @@ const PlaceCard = (props) => {
 
 PlaceCard.propTypes = {
   className: PropTypes.string,
+  changeCity: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
   height: PropTypes.number,
   infoClassName: PropTypes.string,
@@ -80,12 +83,10 @@ const mapDispatchToProps = (dispatch) => ({
   updateActivePlace(place) {
     dispatch(ActionCreator.updateActivePlace(place));
   },
+  changeCity(city) {
+    dispatch(ActionCreator.changeCity(city));
+  },
 });
 
-// const mapStateToProps = (state) => ({
-//   citySelected: state.citySelected,
-//   sortType: state.sortType,
-// });
-
 export {PlaceCard};
-export default connect(``, mapDispatchToProps)(PlaceCard);
+export default connect(null, mapDispatchToProps)(PlaceCard);

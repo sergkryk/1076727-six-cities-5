@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import PlaceCard from "../place-card/place-card";
 
-const PlaceCardNear = (props) => {
+const PlaceCardFavorite = (props) => {
   const {className = ``} = props;
   const restProps = Object.assign({}, props);
 
@@ -17,8 +17,8 @@ const PlaceCardNear = (props) => {
   );
 };
 
-PlaceCardNear.propTypes = {
+PlaceCardFavorite.propTypes = {
   className: PropTypes.string,
 };
 
-export default PlaceCardNear;
+export default PlaceCardFavorite;
