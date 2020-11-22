@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import OffersList from "../offers-list/offers-list";
+import PlacesList from "../places-list/places-list";
 import {propTypeOffer} from "../../check-prop-types";
 
 const FavoritesScreen = (props) => {
@@ -49,7 +49,7 @@ const FavoritesScreen = (props) => {
                     </div>
                   </div>
                   <div className="favorites__places">
-                    {<OffersList
+                    {<PlacesList
                       type={`favorite`}
                       offers={favorites.filter((item) => item.city === city)}
                       history={history}

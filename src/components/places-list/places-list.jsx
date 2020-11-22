@@ -5,7 +5,7 @@ import PlaceCardNear from "../place-card-near/place-card-near";
 import PlaceCardFavorite from "../place-card-favorite/place-card-favorite";
 import {propTypeOffer} from "../../check-prop-types";
 
-const OffersList = (props) => {
+const PlacesList = (props) => {
   const {type, history, offers} = props;
   let Component = PlaceCard;
 
@@ -29,9 +29,9 @@ const OffersList = (props) => {
   );
 };
 
-OffersList.propTypes = {
+PlacesList.propTypes = {
   history: PropTypes.object.isRequired,
   offers: PropTypes.arrayOf(PropTypes.shape(propTypeOffer).isRequired),
 };
 
-export default OffersList;
+export default PlacesList;

@@ -539,87 +539,87 @@ const offers = [
     type: `Campsite`,
     id: 15
   },
-  {
-    bedrooms: 1,
-    city: `Hamburg`,
-    description: [`An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`, `Professional and friendly staff will do everything to make clients feel like at home. It’s important for us to leave you only positive emotions and an excellent mood.`],
-    features: [`Wi-Fi`, `Heating`, `Fridge`, `Coffee machine`, `Dishwasher`, `Minibar`, `Safety deposit box`, `Non-smoking rooms`, `Fitness centre`],
-    guests: 2,
-    host: {
-      avatar: `https://api.adorable.io/avatars/94`,
-      name: `Mustapha`,
-      pro: true
-    },
-    isFavorite: true,
-    location: [53.55181, 9.98233],
-    pictures: [`https://source.unsplash.com/collection/1163637/260x200?sig=893`, `https://source.unsplash.com/collection/1163637/260x200?sig=677`, `https://source.unsplash.com/collection/1163637/260x200?sig=865`, `https://source.unsplash.com/collection/1163637/260x200?sig=410`, `https://source.unsplash.com/collection/1163637/260x200?sig=652`, `https://source.unsplash.com/collection/1163637/260x200?sig=614`],
-    premium: false,
-    price: 132,
-    rating: 0.6,
-    title: `Park Inn by Radisson Nevsky`,
-    type: `Villa`,
-    id: 16
-  }, {
-    bedrooms: 2,
-    city: `Hamburg`,
-    description: [`An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`, `Professional and friendly staff will do everything to make clients feel like at home. It’s important for us to leave you only positive emotions and an excellent mood.`],
-    features: [`Heating`, `Kitchen`, `Coffee machine`, `Dishwasher`, `Towels`, `Cabel TV`, `Air conditioning`, `Safety deposit box`, `Family rooms`, `Non-smoking rooms`],
-    guests: 22,
-    host: {
-      avatar: `https://api.adorable.io/avatars/33`,
-      name: `Jennifer`,
-      pro: false
-    },
-    isFavorite: true,
-    location: [53.55393, 10.00042],
-    pictures: [`https://source.unsplash.com/collection/1163637/260x200?sig=728`, `https://source.unsplash.com/collection/1163637/260x200?sig=888`, `https://source.unsplash.com/collection/1163637/260x200?sig=830`, `https://source.unsplash.com/collection/1163637/260x200?sig=852`, `https://source.unsplash.com/collection/1163637/260x200?sig=423`, `https://source.unsplash.com/collection/1163637/260x200?sig=421`],
-    premium: false,
-    price: 410,
-    rating: 1.7,
-    title: `Rocco Forte Astoria Hotel`,
-    type: `Guest house`,
-    id: 17
-  }, {
-    bedrooms: 9,
-    city: `Hamburg`,
-    description: [`Location of our hotel is just amazing: a minute’s walk from Nevsky Prospect and within minutes of Palace Square & the Hermitage. Art galleries, cafés, restaurants of every kind are all around it. The location is truly unbeatable.`, `We offer diverse accommodations: comfortable standard and superior rooms, suites equipped with Jacuzzi and sauna. WiFi internet is complimentary.`],
-    features: [`Heating`, `Washing machine`, `Coffee machine`, `Towels`, `Cabel TV`, `Air conditioning`, `Minibar`, `Fitness centre`],
-    guests: 12,
-    host: {
-      avatar: `https://api.adorable.io/avatars/89`,
-      name: `Bec`,
-      pro: true
-    },
-    isFavorite: true,
-    location: [53.54894, 9.99321],
-    pictures: [`https://source.unsplash.com/collection/1163637/260x200?sig=675`, `https://source.unsplash.com/collection/1163637/260x200?sig=783`, `https://source.unsplash.com/collection/1163637/260x200?sig=664`, `https://source.unsplash.com/collection/1163637/260x200?sig=731`, `https://source.unsplash.com/collection/1163637/260x200?sig=107`, `https://source.unsplash.com/collection/1163637/260x200?sig=894`],
-    premium: false,
-    price: 954,
-    rating: 4.8,
-    title: `Beautiful & luxurious studio at great location`,
-    type: `Villa`,
-    id: 18
-  }, {
-    bedrooms: 5,
-    city: `Hamburg`,
-    description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`],
-    features: [`Kitchen`, `Washing machine`, `Coffee machine`, `Towels`, `Spa and wellness centre`, `Non-smoking rooms`],
-    guests: 27,
-    host: {
-      avatar: `https://api.adorable.io/avatars/14`,
-      name: `Clinton`,
-      pro: false
-    },
-    isFavorite: true,
-    location: [53.54730, 9.98102],
-    pictures: [`https://source.unsplash.com/collection/1163637/260x200?sig=429`, `https://source.unsplash.com/collection/1163637/260x200?sig=154`, `https://source.unsplash.com/collection/1163637/260x200?sig=504`, `https://source.unsplash.com/collection/1163637/260x200?sig=667`, `https://source.unsplash.com/collection/1163637/260x200?sig=89`, `https://source.unsplash.com/collection/1163637/260x200?sig=683`],
-    premium: false,
-    price: 603,
-    rating: 2.6,
-    title: `Majestic Boutique Hotel Deluxe`,
-    type: `Hostel`,
-    id: 19
-  },
+  // {
+  //   bedrooms: 1,
+  //   city: `Hamburg`,
+  //   description: [`An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`, `Professional and friendly staff will do everything to make clients feel like at home. It’s important for us to leave you only positive emotions and an excellent mood.`],
+  //   features: [`Wi-Fi`, `Heating`, `Fridge`, `Coffee machine`, `Dishwasher`, `Minibar`, `Safety deposit box`, `Non-smoking rooms`, `Fitness centre`],
+  //   guests: 2,
+  //   host: {
+  //     avatar: `https://api.adorable.io/avatars/94`,
+  //     name: `Mustapha`,
+  //     pro: true
+  //   },
+  //   isFavorite: true,
+  //   location: [53.55181, 9.98233],
+  //   pictures: [`https://source.unsplash.com/collection/1163637/260x200?sig=893`, `https://source.unsplash.com/collection/1163637/260x200?sig=677`, `https://source.unsplash.com/collection/1163637/260x200?sig=865`, `https://source.unsplash.com/collection/1163637/260x200?sig=410`, `https://source.unsplash.com/collection/1163637/260x200?sig=652`, `https://source.unsplash.com/collection/1163637/260x200?sig=614`],
+  //   premium: false,
+  //   price: 132,
+  //   rating: 0.6,
+  //   title: `Park Inn by Radisson Nevsky`,
+  //   type: `Villa`,
+  //   id: 16
+  // }, {
+  //   bedrooms: 2,
+  //   city: `Hamburg`,
+  //   description: [`An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`, `Professional and friendly staff will do everything to make clients feel like at home. It’s important for us to leave you only positive emotions and an excellent mood.`],
+  //   features: [`Heating`, `Kitchen`, `Coffee machine`, `Dishwasher`, `Towels`, `Cabel TV`, `Air conditioning`, `Safety deposit box`, `Family rooms`, `Non-smoking rooms`],
+  //   guests: 22,
+  //   host: {
+  //     avatar: `https://api.adorable.io/avatars/33`,
+  //     name: `Jennifer`,
+  //     pro: false
+  //   },
+  //   isFavorite: true,
+  //   location: [53.55393, 10.00042],
+  //   pictures: [`https://source.unsplash.com/collection/1163637/260x200?sig=728`, `https://source.unsplash.com/collection/1163637/260x200?sig=888`, `https://source.unsplash.com/collection/1163637/260x200?sig=830`, `https://source.unsplash.com/collection/1163637/260x200?sig=852`, `https://source.unsplash.com/collection/1163637/260x200?sig=423`, `https://source.unsplash.com/collection/1163637/260x200?sig=421`],
+  //   premium: false,
+  //   price: 410,
+  //   rating: 1.7,
+  //   title: `Rocco Forte Astoria Hotel`,
+  //   type: `Guest house`,
+  //   id: 17
+  // }, {
+  //   bedrooms: 9,
+  //   city: `Hamburg`,
+  //   description: [`Location of our hotel is just amazing: a minute’s walk from Nevsky Prospect and within minutes of Palace Square & the Hermitage. Art galleries, cafés, restaurants of every kind are all around it. The location is truly unbeatable.`, `We offer diverse accommodations: comfortable standard and superior rooms, suites equipped with Jacuzzi and sauna. WiFi internet is complimentary.`],
+  //   features: [`Heating`, `Washing machine`, `Coffee machine`, `Towels`, `Cabel TV`, `Air conditioning`, `Minibar`, `Fitness centre`],
+  //   guests: 12,
+  //   host: {
+  //     avatar: `https://api.adorable.io/avatars/89`,
+  //     name: `Bec`,
+  //     pro: true
+  //   },
+  //   isFavorite: true,
+  //   location: [53.54894, 9.99321],
+  //   pictures: [`https://source.unsplash.com/collection/1163637/260x200?sig=675`, `https://source.unsplash.com/collection/1163637/260x200?sig=783`, `https://source.unsplash.com/collection/1163637/260x200?sig=664`, `https://source.unsplash.com/collection/1163637/260x200?sig=731`, `https://source.unsplash.com/collection/1163637/260x200?sig=107`, `https://source.unsplash.com/collection/1163637/260x200?sig=894`],
+  //   premium: false,
+  //   price: 954,
+  //   rating: 4.8,
+  //   title: `Beautiful & luxurious studio at great location`,
+  //   type: `Villa`,
+  //   id: 18
+  // }, {
+  //   bedrooms: 5,
+  //   city: `Hamburg`,
+  //   description: [`A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`, `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`],
+  //   features: [`Kitchen`, `Washing machine`, `Coffee machine`, `Towels`, `Spa and wellness centre`, `Non-smoking rooms`],
+  //   guests: 27,
+  //   host: {
+  //     avatar: `https://api.adorable.io/avatars/14`,
+  //     name: `Clinton`,
+  //     pro: false
+  //   },
+  //   isFavorite: true,
+  //   location: [53.54730, 9.98102],
+  //   pictures: [`https://source.unsplash.com/collection/1163637/260x200?sig=429`, `https://source.unsplash.com/collection/1163637/260x200?sig=154`, `https://source.unsplash.com/collection/1163637/260x200?sig=504`, `https://source.unsplash.com/collection/1163637/260x200?sig=667`, `https://source.unsplash.com/collection/1163637/260x200?sig=89`, `https://source.unsplash.com/collection/1163637/260x200?sig=683`],
+  //   premium: false,
+  //   price: 603,
+  //   rating: 2.6,
+  //   title: `Majestic Boutique Hotel Deluxe`,
+  //   type: `Hostel`,
+  //   id: 19
+  // },
 ];
 
 export {

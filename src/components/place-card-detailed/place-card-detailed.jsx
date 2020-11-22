@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import OffersList from "../offers-list/offers-list";
+import PlacesList from "../places-list/places-list";
 import Map from "../map/map";
 import ReviewList from "../review-list/review-list";
 import {propTypeOffer, propTypeReview} from "../../check-prop-types";
@@ -148,7 +148,7 @@ const PlaceCardDetailed = (props) => {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {<OffersList
+              {<PlacesList
                 type = {`near`}
                 offers={nearOffers}
                 history={history}
